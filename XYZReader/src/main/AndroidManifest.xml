@@ -1,3 +1,7 @@
+<!--
+  ~ Copyright (c) 2017 Erik Cox
+  -->
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.xyzreader"
     android:versionCode="1"

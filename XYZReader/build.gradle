@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2017 Erik Cox
+ */
+
 buildscript {
     repositories {
         mavenCentral()

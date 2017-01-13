@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2017 Erik Cox
+ */
+
 package com.example.xyzreader.ui;
 
 import android.app.Fragment;

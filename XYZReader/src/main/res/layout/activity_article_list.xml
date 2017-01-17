@@ -19,7 +19,7 @@
             android:layout_height="match_parent"
             android:clipToPadding="false"
             android:scrollbarStyle="outsideOverlay"
-            android:paddingTop="116dp"
+            android:paddingTop="?attr/actionBarSize"
             android:paddingLeft="@dimen/list_side_margin"
             android:paddingRight="@dimen/list_side_margin"
             android:paddingBottom="28dp" />
@@ -28,9 +28,9 @@
     <FrameLayout
         android:id="@+id/toolbar_container"
         android:layout_width="match_parent"
-        android:layout_height="112dp"
+        android:layout_height="?attr/actionBarSize"
         android:background="?colorPrimary"
-        android:elevation="8dp">
+        android:elevation="4dp">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"

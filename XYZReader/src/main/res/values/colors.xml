@@ -5,8 +5,20 @@
 <resources>
     <color name="photo_placeholder">#ccc</color>
 
+    <!-- theme colors -->
     <color name="theme_primary">#18d8f0</color>
     <color name="theme_primary_dark">#22abc7</color>
     <color name="theme_accent">#f090c0</color>
     <color name="ltgray">#ffe0e0e0</color>
+
+    <!-- text -->
+
+    <color name="text_primary">#000000</color>
+    <color name="text_secondary">#000000</color>
+
+    <!-- black text color with 87% of opacity -->
+    <color name="text_opacity_87">#1F1F1F</color>
+
+    <!-- black text color with 54% of opacity -->
+    <color name="text_opacity_54">#616161</color>
 </resources>

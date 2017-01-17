@@ -9,11 +9,22 @@
         <item name="colorPrimary">@color/theme_primary</item>
         <item name="colorPrimaryDark">@color/theme_primary_dark</item>
         <item name="colorAccent">@color/theme_accent</item>
+        <item name="android:textColor">#6000</item>
     </style>
 
     <style name="Theme.xyz.Detail">
         <!--TODO: change this for API 21 and higher only-->
         <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="Theme.xyz.CardTextPrimary">
+        <item name="android:textColor">@color/text_opacity_87</item>
+        <item name="android:textSize">@dimen/card_primary_text_size</item>
+    </style>
+
+    <style name="Theme.xyz.CardTextSecondary">
+        <item name="android:textColor">@color/text_opacity_54</item>
+        <item name="android:textSize">@dimen/card_secondary_text_size</item>
     </style>
 
 </resources>

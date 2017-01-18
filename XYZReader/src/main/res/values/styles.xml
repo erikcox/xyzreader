@@ -15,6 +15,12 @@
     <style name="Theme.xyz.Detail">
     </style>
 
+    <style name="Theme.xyz.Toolbar">
+        <item name="android:textSize">20sp</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
     <style name="Theme.xyz.CardTextPrimary">
         <item name="android:textColor">@color/text_opacity_87</item>
         <item name="android:textSize">@dimen/card_primary_text_size</item>

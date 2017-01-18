@@ -19,5 +19,6 @@
 
     <!-- margins -->
     <dimen name="margin16">16dp</dimen>
+    <dimen name="app_bar_height">56dp</dimen>
 
 </resources>

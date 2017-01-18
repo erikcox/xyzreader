@@ -16,6 +16,10 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
+    <style name="Theme.xyz.Toolbar">
+        <item name="android:fontFamily"></item>
+    </style>
+
     <style name="Theme.xyz.CardTextPrimary">
         <item name="android:textColor">@color/text_opacity_87</item>
         <item name="android:textSize">@dimen/card_primary_text_size</item>

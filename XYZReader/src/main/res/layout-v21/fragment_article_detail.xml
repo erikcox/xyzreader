@@ -105,6 +105,7 @@
         android:background="@drawable/add_fab_background"
         android:layout_gravity="bottom|end"
         android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginBottom="@dimen/fab_margin"
         android:layout_width="@dimen/fab_diameter"
         android:layout_height="@dimen/fab_diameter"

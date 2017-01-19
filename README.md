@@ -14,31 +14,31 @@ In this project, you will redesign an app to follow the Material Design guidelin
 
 **Jay says:**
 
-*“Is the text supposed to be so wonky and unreadable? It is not accessible to those of us without perfect vision."*
+*~~“Is the text supposed to be so wonky and unreadable? It is not accessible to those of us without perfect vision."~~*
 
 **Kagure says:**
 
-*“The color scheme is really sad and I shouldn't feel sad.”*
+*~~“The color scheme is really sad and I shouldn't feel sad.”~~*
 
 ## Project Rubric
 ### Required Behavior
 
 * [ ] App uses the Design Support library and its provided widget types (`FloatingActionButton`, `AppBarLayout`, `SnackBar`, etc).
 
-* [ ] App uses `CoordinatorLayout` for the main Activity.
+* [x] App uses `CoordinatorLayout` for the main Activity.
 
-* [ ] App theme extends from AppCompat.
+* [x] App theme extends from AppCompat.
 
-* [ ] App uses an `AppBar` and associated `Toolbars`.
+* [x] App uses an `AppBar` and associated `Toolbars`.
 
-* [ ] App provides a Floating Action Button for the most common action(s).
+* [x] App provides a Floating Action Button for the most common action(s).
 
 * [ ] App properly specifies elevations for app bars, FABs, and other elements specified in the [Material Design specification](http://www.google.com/design/spec/material-design/introduction.html).
 
-* [ ] App has a consistent color theme defined in `styles.xml`. Color theme does not impact usability of the app.
+* [x] App has a consistent color theme defined in `styles.xml`. Color theme does not impact usability of the app.
 
-* [ ] App provides sufficient space between text and surrounding elements.
+* [x] App provides sufficient space between text and surrounding elements.
 
-* [ ] App uses images that are high quality, specific, and full bleed.
+* [x] App uses images that are high quality, specific, and full bleed.
 
-* [ ] App uses fonts that are either the Android defaults, are complementary, and aren't otherwise distracting.
+* [x] App uses fonts that are either the Android defaults, are complementary, and aren't otherwise distracting.

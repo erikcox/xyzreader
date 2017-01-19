@@ -30,7 +30,7 @@
     <style name="Theme.xyz.CardTextSecondary">
         <item name="android:textColor">@color/text_opacity_54</item>
         <item name="android:textSize">@dimen/card_secondary_text_size</item>
-        <item name="android:fontFamily">sans-serif-thin</item>
+        <item name="android:fontFamily">sans-serif</item>
     </style>
 
 </resources>

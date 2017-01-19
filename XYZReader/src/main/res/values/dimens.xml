@@ -6,6 +6,7 @@
     <!-- cards -->
     <dimen name="card_primary_text_size">14sp</dimen>
     <dimen name="card_secondary_text_size">10sp</dimen>
+    <dimen name="card_elevation">2dp</dimen>
 
     <!-- detail -->
     <dimen name="detail_title_text_size">34sp</dimen>
@@ -16,9 +17,13 @@
     <dimen name="fab_elevation">2dp</dimen>
     <dimen name="fab_press_translation_z">6dp</dimen>
     <dimen name="fab_margin">24dp</dimen>
+    <dimen name="fab_diameter">56dp</dimen>
 
     <!-- margins -->
     <dimen name="margin16">16dp</dimen>
     <dimen name="app_bar_height">56dp</dimen>
+
+    <!-- toolbar -->
+    <dimen name="toolbar_elevation">4dp</dimen>
 
 </resources>

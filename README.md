@@ -10,7 +10,7 @@ In this project, you will redesign an app to follow the Material Design guidelin
 ### User Feedback for XYZ Reader:
 **Lyla says:**
 
-*“This app is starting to shape up but it feels a bit off in quite a few places. I can't put finger on it but it feels odd.”*
+*~~“This app is starting to shape up but it feels a bit off in quite a few places. I can't put finger on it but it feels odd.”~~*
 
 **Jay says:**
 
@@ -23,7 +23,7 @@ In this project, you will redesign an app to follow the Material Design guidelin
 ## Project Rubric
 ### Required Behavior
 
-* [ ] App uses the Design Support library and its provided widget types (`FloatingActionButton`, `AppBarLayout`, `SnackBar`, etc).
+* [x] App uses the Design Support library and its provided widget types (`FloatingActionButton`, `AppBarLayout`, `SnackBar`, etc).
 
 * [x] App uses `CoordinatorLayout` for the main Activity.
 
@@ -33,7 +33,7 @@ In this project, you will redesign an app to follow the Material Design guidelin
 
 * [x] App provides a Floating Action Button for the most common action(s).
 
-* [ ] App properly specifies elevations for app bars, FABs, and other elements specified in the [Material Design specification](http://www.google.com/design/spec/material-design/introduction.html).
+* [x] App properly specifies elevations for app bars, FABs, and other elements specified in the [Material Design specification](http://www.google.com/design/spec/material-design/introduction.html).
 
 * [x] App has a consistent color theme defined in `styles.xml`. Color theme does not impact usability of the app.
 

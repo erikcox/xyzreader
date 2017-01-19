@@ -12,6 +12,8 @@ import android.content.IntentFilter;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -40,7 +42,8 @@ public class ArticleListActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
     private Toolbar mToolbar;
-
+    private Snackbar snackbar;
+    private AppBarLayout toolbarContainerView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView mRecyclerView;
 
@@ -51,6 +54,9 @@ public class ArticleListActivity extends AppCompatActivity implements
 
         mToolbar = (Toolbar) findViewById(toolbar);
         setSupportActionBar(mToolbar);
+
+        toolbarContainerView = (AppBarLayout) findViewById(R.id.toolbar_container);
+        snackbar = Snackbar.make(toolbarContainerView, "XYZ reader updated.", Snackbar.LENGTH_SHORT);
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
 
@@ -92,6 +98,10 @@ public class ArticleListActivity extends AppCompatActivity implements
     };
 
     private void updateRefreshingUI() {
+        if(!mIsRefreshing){
+            snackbar.show();
+        }
+
         mSwipeRefreshLayout.setRefreshing(mIsRefreshing);
     }
 

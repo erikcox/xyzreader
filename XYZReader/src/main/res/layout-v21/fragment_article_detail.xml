@@ -2,6 +2,10 @@
   ~ Copyright (c) 2017 Erik Cox
   -->
 
+<!--
+  ~ Copyright (c) 2017 Erik Cox
+  -->
+
 <com.example.xyzreader.ui.DrawInsetsFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/draw_insets_frame_layout"
     android:layout_width="match_parent"
@@ -27,7 +31,8 @@
                     android:id="@+id/photo"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/detail_photo_height"
-                    android:scaleType="centerCrop" />
+                    android:scaleType="centerCrop"
+                    android:elevation="@dimen/card_elevation" />
 
                 <View
                     android:layout_width="match_parent"
@@ -56,7 +61,8 @@
                     android:paddingBottom="@dimen/detail_metabar_vert_padding"
                     android:paddingLeft="@dimen/detail_inner_horiz_margin"
                     android:paddingRight="@dimen/detail_inner_horiz_margin"
-                    android:paddingTop="@dimen/detail_metabar_vert_padding" >
+                    android:paddingTop="@dimen/detail_metabar_vert_padding"
+                    android:elevation="@dimen/card_elevation" >
 
                     <TextView
                         android:id="@+id/article_title"
@@ -67,7 +73,7 @@
                         android:paddingBottom="@dimen/detail_metabar_title_bottom_padding"
                         android:textColor="@android:color/white"
                         android:textSize="@dimen/detail_title_text_size"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"/>
 
                     <TextView
                         android:id="@+id/article_byline"
@@ -75,7 +81,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/text_opacity_54"
-                        android:textColorLink="@color/text_opacity_54" />
+                        android:textColorLink="@color/text_opacity_54"/>
                 </LinearLayout>
 
                 <TextView
@@ -88,13 +94,14 @@
                     android:paddingBottom="@dimen/detail_body_bottom_margin"
                     android:textColor="@color/text_opacity_54"
                     android:textColorLink="@color/theme_accent"
-                    android:textSize="@dimen/detail_body_text_size" />
+                    android:textSize="@dimen/detail_body_text_size"/>
 
             </com.example.xyzreader.ui.MaxWidthLinearLayout>
         </FrameLayout>
     </com.example.xyzreader.ui.ObservableScrollView>
 
     <ImageButton android:id="@+id/share_fab"
+        android:stateListAnimator="@anim/fab_state_list_anim"
         android:background="@drawable/add_fab_background"
         android:layout_gravity="bottom|end"
         android:layout_marginRight="@dimen/fab_margin"
@@ -102,6 +109,7 @@
         android:layout_width="@dimen/fab_diameter"
         android:layout_height="@dimen/fab_diameter"
         android:src="@drawable/ic_share"
+        android:elevation="@dimen/fab_elevation"
         android:contentDescription="@string/action_share" />
 
 </com.example.xyzreader.ui.DrawInsetsFrameLayout>

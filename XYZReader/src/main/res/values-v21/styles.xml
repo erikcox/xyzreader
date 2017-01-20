@@ -10,6 +10,9 @@
         <item name="colorAccent">@color/theme_accent</item>
         <item name="android:textColor">@color/text_opacity_87</item>
         <item name="android:navigationBarColor">@color/theme_primary</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowAllowEnterTransitionOverlap">true</item>
+        <item name="android:windowAllowReturnTransitionOverlap">true</item>
     </style>
 
     <style name="Theme.xyz.Detail">
@@ -31,7 +34,7 @@
     <style name="Theme.xyz.CardTextSecondary">
         <item name="android:textColor">@color/text_opacity_54</item>
         <item name="android:textSize">@dimen/card_secondary_text_size</item>
-        <item name="android:fontFamily">sans-serif-thin</item>
+        <item name="android:fontFamily">sans-serif</item>
     </style>
 
 </resources>

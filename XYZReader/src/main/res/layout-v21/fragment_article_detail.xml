@@ -32,7 +32,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/detail_photo_height"
                     android:scaleType="centerCrop"
-                    android:elevation="@dimen/card_elevation" />
+                    android:elevation="@dimen/card_elevation"
+                    android:transitionName="@string/transition_photo" />
 
                 <View
                     android:layout_width="match_parent"

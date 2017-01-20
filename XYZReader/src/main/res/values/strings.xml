@@ -13,4 +13,5 @@
 
     <string name="up">Up</string>
 
+    <string name="transition_photo">photo_transition_animation</string>
 </resources>

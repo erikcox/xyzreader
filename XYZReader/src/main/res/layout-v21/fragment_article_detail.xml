@@ -15,7 +15,7 @@
         android:id="@+id/scrollview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/theme_primary_dark">
+        android:background="@android:color/white">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/detail_card_top_margin"
-                android:background="@android:color/white"
+                android:background="@color/ltgray"
                 android:maxWidth="@dimen/detail_card_max_width"
                 android:orientation="vertical">
 

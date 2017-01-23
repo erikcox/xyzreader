@@ -54,6 +54,8 @@ public class ArticleListActivity extends AppCompatActivity implements
 
         mToolbar = (Toolbar) findViewById(toolbar);
         setSupportActionBar(mToolbar);
+        // Using drawable for title so clear the text
+        getSupportActionBar().setTitle("");
 
         toolbarContainerView = (AppBarLayout) findViewById(R.id.toolbar_container);
         snackbar = Snackbar.make(toolbarContainerView, "XYZ reader updated.", Snackbar.LENGTH_SHORT);

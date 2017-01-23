@@ -57,6 +57,8 @@ public class ArticleListActivity extends AppCompatActivity implements
 
         toolbarContainerView = (AppBarLayout) findViewById(R.id.toolbar_container);
         snackbar = Snackbar.make(toolbarContainerView, "XYZ reader updated.", Snackbar.LENGTH_SHORT);
+        View snackBarView = snackbar.getView();
+        snackBarView.setBackgroundColor(getResources().getColor(R.color.theme_accent));
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
 

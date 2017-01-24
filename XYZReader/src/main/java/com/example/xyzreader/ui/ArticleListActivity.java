@@ -10,17 +10,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -147,12 +150,24 @@ public class ArticleListActivity extends AppCompatActivity implements
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    SharedPreferences mTransitionName = getApplicationContext().getSharedPreferences("Transition", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = mTransitionName.edit();
+                    editor.putString("transitionName", getString(R.string.transition_photo)+String.valueOf(vh.getAdapterPosition()));
+                    editor.apply();
+                    String transitionName = mTransitionName.getString("transitionName", "missing");
+
                     Intent intent = new Intent(ArticleListActivity.this, ArticleDetailActivity.class);
                     intent.putExtra(Intent.ACTION_VIEW, ItemsContract.Items.buildItemUri(getItemId(vh.getAdapterPosition())));
 
+                    NetworkImageView thumbnail = (NetworkImageView)view.findViewById(R.id.thumbnail);
+                    thumbnail.setTransitionName(transitionName);
+
                     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                        String mArticleId = mCursor.getString(ArticleLoader.Query._ID);
                         ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(ArticleListActivity.this,
-                                view, getString(R.string.transition_photo)+String.valueOf(vh.getAdapterPosition()));
+                                thumbnail, transitionName);
+                        Log.d("ARTICLE_ID", "vh: " + String.valueOf(vh.getAdapterPosition()) + " mArticleId: " + mArticleId + " shared pref: " + transitionName);
+                        ViewCompat.setTransitionName(thumbnail, transitionName);
                         startActivity(intent, options.toBundle());
                     }  else {
                         startActivity(intent);

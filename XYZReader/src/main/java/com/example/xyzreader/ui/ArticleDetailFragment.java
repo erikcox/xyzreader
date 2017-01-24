@@ -22,6 +22,7 @@ import android.support.v7.graphics.Palette;
 import android.text.Html;
 import android.text.format.DateUtils;
 import android.text.method.LinkMovementMethod;
+import android.transition.Transition;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,6 +61,7 @@ public class ArticleDetailFragment extends Fragment implements
     private int mScrollY;
     private boolean mIsCard = false;
     private int mStatusBarFullOpacityBottom;
+    private long mBackgroundImageFadeMillis;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -88,6 +90,7 @@ public class ArticleDetailFragment extends Fragment implements
         mStatusBarFullOpacityBottom = getResources().getDimensionPixelSize(
                 R.dimen.detail_card_top_margin);
         setHasOptionsMenu(true);
+        mBackgroundImageFadeMillis = 1000;
     }
 
     public ArticleDetailActivity getActivityCast() {
@@ -136,6 +139,15 @@ public class ArticleDetailFragment extends Fragment implements
         String transitionName = mTransitionName.getString("transitionName", "missing");
         ViewCompat.setTransitionName(mPhotoView, transitionName);
         Log.d("ARTICLE_ID", transitionName);
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            getActivity().getWindow().getSharedElementEnterTransition().addListener(new TransitionListenerAdapter() {
+                @Override
+                public void onTransitionEnd(Transition transition) {
+                    mPhotoView.animate().setDuration(mBackgroundImageFadeMillis).alpha(1f);
+                }
+            });
+        }
 
         mStatusBarColorDrawable = new ColorDrawable(0);
 

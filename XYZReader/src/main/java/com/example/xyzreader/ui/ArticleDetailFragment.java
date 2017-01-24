@@ -17,7 +17,6 @@ import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.ShareCompat;
-import android.support.v4.view.ViewCompat;
 import android.support.v7.graphics.Palette;
 import android.text.Html;
 import android.text.format.DateUtils;
@@ -132,15 +131,21 @@ public class ArticleDetailFragment extends Fragment implements
             }
         });
 
-        mPhotoView = (ImageView) mRootView.findViewById(R.id.photo);
-        mPhotoContainerView = mRootView.findViewById(R.id.photo_container);
-
-        SharedPreferences mTransitionName = getActivity().getSharedPreferences("Transition", Context.MODE_PRIVATE);
-        String transitionName = mTransitionName.getString("transitionName", "missing");
-        ViewCompat.setTransitionName(mPhotoView, transitionName);
-        Log.d("ARTICLE_ID", transitionName);
-
+        // Only apply transitions for API 21+
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            mPhotoView = (ImageView) mRootView.findViewById(R.id.photo);
+            mPhotoContainerView = mRootView.findViewById(R.id.photo_container);
+
+            // Grab the transition name
+            SharedPreferences mTransitionName = getActivity().getSharedPreferences("Transition", Context.MODE_PRIVATE);
+            String transitionName = mTransitionName.getString("transitionName", "missing");
+
+            //ViewCompat.setTransitionName(mPhotoView, transitionName);
+            mPhotoView.setTransitionName(transitionName);
+
+            // Log the transition name
+            Log.d("ARTICLE_ID", transitionName);
+
             getActivity().getWindow().getSharedElementEnterTransition().addListener(new TransitionListenerAdapter() {
                 @Override
                 public void onTransitionEnd(Transition transition) {

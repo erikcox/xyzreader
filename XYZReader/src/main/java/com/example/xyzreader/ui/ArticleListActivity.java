@@ -167,22 +167,25 @@ public class ArticleListActivity extends AppCompatActivity implements
                     Intent intent = new Intent(ArticleListActivity.this, ArticleDetailActivity.class);
                     intent.putExtra(Intent.ACTION_VIEW, ItemsContract.Items.buildItemUri(getItemId(vh.getAdapterPosition())));
 
-
-
+                    // Only apply transitions for API 21+
                     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
                         String mArticleId = mCursor.getString(ArticleLoader.Query._ID);
 
                         NetworkImageView thumbnail = (NetworkImageView)view.findViewById(R.id.thumbnail);
+
+                        // Store transition name in a SharedPreference
                         SharedPreferences mTransitionName = getApplicationContext().getSharedPreferences("Transition", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = mTransitionName.edit();
                         editor.putString("transitionName", getString(R.string.transition_photo)+String.valueOf(vh.getAdapterPosition()));
                         editor.apply();
                         String transitionName = mTransitionName.getString("transitionName", "missing");
+
                         // ViewCompat.setTransitionName(thumbnail, transitionName);
                         thumbnail.setTransitionName(transitionName);
                         ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(ArticleListActivity.this,
                                 thumbnail, transitionName);
 
+                        // Log some values
                         Log.d("ARTICLE_ID", "vh: " + String.valueOf(vh.getAdapterPosition()) + " mArticleId: " + mArticleId + " shared pref: " + transitionName);
 
                         startActivity(intent, options.toBundle());

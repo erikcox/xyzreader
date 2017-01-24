@@ -17,7 +17,6 @@ import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -179,8 +178,8 @@ public class ArticleListActivity extends AppCompatActivity implements
                         editor.putString("transitionName", getString(R.string.transition_photo)+String.valueOf(vh.getAdapterPosition()));
                         editor.apply();
                         String transitionName = mTransitionName.getString("transitionName", "missing");
-                        // thumbnail.setTransitionName(transitionName);
-                        ViewCompat.setTransitionName(thumbnail, transitionName);
+                        // ViewCompat.setTransitionName(thumbnail, transitionName);
+                        thumbnail.setTransitionName(transitionName);
                         ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(ArticleListActivity.this,
                                 thumbnail, transitionName);
 

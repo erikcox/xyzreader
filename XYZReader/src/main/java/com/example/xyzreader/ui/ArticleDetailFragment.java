@@ -164,18 +164,6 @@ public class ArticleDetailFragment extends Fragment implements
                 }
             });
 
-//        Start new code
-            mPhotoView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-                @Override
-                public boolean onPreDraw() {
-                    mPhotoView.getViewTreeObserver().removeOnPreDrawListener(this);
-                    // Start the postponed transition
-                    ActivityCompat.startPostponedEnterTransition(getActivity());
-                    Log.d("TRANS_DETAIL_ACTIVITY", "Resuming transition");
-                    return true;
-                }
-            });
-//        End new code
         }
 
         bindViews();
@@ -274,10 +262,24 @@ public class ArticleDetailFragment extends Fragment implements
 
     @Override
     public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
+
+        mPhotoView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                mPhotoView.getViewTreeObserver().removeOnPreDrawListener(this);
+                // Start the postponed transition
+                ActivityCompat.startPostponedEnterTransition(getActivity());
+                Log.d("TRANS_DETAIL_ACTIVITY", "Resuming transition");
+                return true;
+            }
+        });
+
         if (!isAdded()) {
             if (cursor != null) {
                 cursor.close();
             }
+
+
             return;
         }
 

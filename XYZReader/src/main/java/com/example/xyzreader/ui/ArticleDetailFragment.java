@@ -8,7 +8,6 @@ import android.app.Fragment;
 import android.app.LoaderManager;
 import android.content.Intent;
 import android.content.Loader;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -64,9 +63,6 @@ public class ArticleDetailFragment extends Fragment implements
     private boolean mIsCard = false;
     private int mStatusBarFullOpacityBottom;
     private long mBackgroundImageFadeMillis;
-    String transitionName;
-    String articleID = "-1";
-    SharedPreferences mTransitionName;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the

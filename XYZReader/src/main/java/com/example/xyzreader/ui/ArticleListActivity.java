@@ -10,7 +10,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.Loader;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
@@ -51,6 +50,7 @@ public class ArticleListActivity extends AppCompatActivity implements
     private AppBarLayout toolbarContainerView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView mRecyclerView;
+    String mTransitionName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -173,20 +173,14 @@ public class ArticleListActivity extends AppCompatActivity implements
 
                         NetworkImageView thumbnail = (NetworkImageView)view.findViewById(R.id.thumbnail);
 
-                        // Store transition name in a SharedPreference
-                        SharedPreferences mTransitionName = getApplicationContext().getSharedPreferences("Transition", Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = mTransitionName.edit();
-                        editor.putString("transitionName", getString(R.string.transition_photo)+String.valueOf(vh.getAdapterPosition()));
-                        editor.apply();
-                        String transitionName = mTransitionName.getString("transitionName", "missing");
+                        mTransitionName = getString(R.string.transition_photo) + String.valueOf(vh.getAdapterPosition());
 
-                        // ViewCompat.setTransitionName(thumbnail, transitionName);
-                        thumbnail.setTransitionName(transitionName);
+                        thumbnail.setTransitionName(mTransitionName);
                         ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(ArticleListActivity.this,
-                                thumbnail, transitionName);
+                                thumbnail, mTransitionName);
 
                         // Log some values
-                        Log.d("ARTICLE_ID", "vh: " + String.valueOf(vh.getAdapterPosition()) + " mArticleId: " + mArticleId + " shared pref: " + transitionName);
+                        Log.d("TRANS_LIST_ACTIVITY", "  Article id: " + mArticleId + " transitionName: " + mTransitionName + " vh: " + String.valueOf(vh.getAdapterPosition()));
 
                         startActivity(intent, options.toBundle());
                     }  else {

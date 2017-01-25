@@ -6,7 +6,6 @@ package com.example.xyzreader.ui;
 
 import android.app.Fragment;
 import android.app.LoaderManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.SharedPreferences;
@@ -44,10 +43,12 @@ public class ArticleDetailFragment extends Fragment implements
     private static final String TAG = "ArticleDetailFragment";
 
     public static final String ARG_ITEM_ID = "item_id";
+    public static final String ARG_ITEM_POSITION = "item_position";
     private static final float PARALLAX_FACTOR = 1.25f;
 
     private Cursor mCursor;
     private long mItemId;
+    private int mItemPosition;
     private View mRootView;
     private int mMutedColor = 0xFF333333;
     private ObservableScrollView mScrollView;
@@ -61,6 +62,9 @@ public class ArticleDetailFragment extends Fragment implements
     private boolean mIsCard = false;
     private int mStatusBarFullOpacityBottom;
     private long mBackgroundImageFadeMillis;
+    String transitionName;
+    String articleID = "-1";
+    SharedPreferences mTransitionName;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -69,9 +73,10 @@ public class ArticleDetailFragment extends Fragment implements
     public ArticleDetailFragment() {
     }
 
-    public static ArticleDetailFragment newInstance(long itemId) {
+    public static ArticleDetailFragment newInstance(long itemId, int position) {
         Bundle arguments = new Bundle();
         arguments.putLong(ARG_ITEM_ID, itemId);
+        arguments.putInt(ARG_ITEM_POSITION, position);
         ArticleDetailFragment fragment = new ArticleDetailFragment();
         fragment.setArguments(arguments);
         return fragment;
@@ -83,6 +88,7 @@ public class ArticleDetailFragment extends Fragment implements
 
         if (getArguments().containsKey(ARG_ITEM_ID)) {
             mItemId = getArguments().getLong(ARG_ITEM_ID);
+            mItemPosition = getArguments().getInt(ARG_ITEM_POSITION);
         }
 
         mIsCard = getResources().getBoolean(R.bool.detail_is_card);
@@ -136,15 +142,7 @@ public class ArticleDetailFragment extends Fragment implements
             mPhotoView = (ImageView) mRootView.findViewById(R.id.photo);
             mPhotoContainerView = mRootView.findViewById(R.id.photo_container);
 
-            // Grab the transition name
-            SharedPreferences mTransitionName = getActivity().getSharedPreferences("Transition", Context.MODE_PRIVATE);
-            String transitionName = mTransitionName.getString("transitionName", "missing");
-
-            //ViewCompat.setTransitionName(mPhotoView, transitionName);
-            mPhotoView.setTransitionName(transitionName);
-
-            // Log the transition name
-            Log.d("ARTICLE_ID", transitionName);
+            mPhotoView.setTransitionName(getString(R.string.transition_photo) + mItemPosition);
 
             getActivity().getWindow().getSharedElementEnterTransition().addListener(new TransitionListenerAdapter() {
                 @Override
@@ -211,6 +209,7 @@ public class ArticleDetailFragment extends Fragment implements
         TextView bodyView = (TextView) mRootView.findViewById(R.id.article_body);
 
         if (mCursor != null) {
+            Log.d("TRANS_DETAIL_FRAGMENT", "Article id: " + mCursor.getString(ArticleLoader.Query._ID) + " transitionName: " + getString(R.string.transition_photo) + mItemPosition);
             mRootView.setAlpha(0);
             mRootView.setVisibility(View.VISIBLE);
             mRootView.animate().alpha(1);

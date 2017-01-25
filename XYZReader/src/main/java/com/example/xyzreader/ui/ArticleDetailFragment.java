@@ -138,6 +138,18 @@ public class ArticleDetailFragment extends Fragment implements
             }
         });
 
+        mStatusBarColorDrawable = new ColorDrawable(0);
+
+        mRootView.findViewById(R.id.share_fab).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(Intent.createChooser(ShareCompat.IntentBuilder.from(getActivity())
+                        .setType("text/plain")
+                        .setText("Some sample text")
+                        .getIntent(), getString(R.string.action_share)));
+            }
+        });
+
         // Only apply transitions for API 21+
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             mPhotoView = (ImageView) mRootView.findViewById(R.id.photo);
@@ -151,35 +163,23 @@ public class ArticleDetailFragment extends Fragment implements
                     mPhotoView.animate().setDuration(mBackgroundImageFadeMillis).alpha(1f);
                 }
             });
+
+//        Start new code
+            mPhotoView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+                @Override
+                public boolean onPreDraw() {
+                    mPhotoView.getViewTreeObserver().removeOnPreDrawListener(this);
+                    // Start the postponed transition
+                    ActivityCompat.startPostponedEnterTransition(getActivity());
+                    Log.d("TRANS_DETAIL_ACTIVITY", "Resuming transition");
+                    return true;
+                }
+            });
+//        End new code
         }
-
-        mStatusBarColorDrawable = new ColorDrawable(0);
-
-        mRootView.findViewById(R.id.share_fab).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(Intent.createChooser(ShareCompat.IntentBuilder.from(getActivity())
-                        .setType("text/plain")
-                        .setText("Some sample text")
-                        .getIntent(), getString(R.string.action_share)));
-            }
-        });
 
         bindViews();
         updateStatusBar();
-
-//        Start new code
-        mRootView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-            @Override
-            public boolean onPreDraw() {
-                mRootView.getViewTreeObserver().removeOnPreDrawListener(this);
-                // Start the postponed transition
-                ActivityCompat.startPostponedEnterTransition(getActivity());
-                Log.d("TRANS_DETAIL_ACTIVITY", "Resuming transition");
-                return true;
-            }
-        });
-//        End new code
 
         return mRootView;
     }

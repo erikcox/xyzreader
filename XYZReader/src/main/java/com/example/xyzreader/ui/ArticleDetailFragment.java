@@ -20,7 +20,6 @@ import android.support.v7.graphics.Palette;
 import android.text.Html;
 import android.text.format.DateUtils;
 import android.text.method.LinkMovementMethod;
-import android.transition.Transition;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -157,13 +156,6 @@ public class ArticleDetailFragment extends Fragment implements
 
             mPhotoView.setTransitionName(getString(R.string.transition_photo) + mItemPosition);
 
-            getActivity().getWindow().getSharedElementEnterTransition().addListener(new TransitionListenerAdapter() {
-                @Override
-                public void onTransitionEnd(Transition transition) {
-                    mPhotoView.animate().setDuration(mBackgroundImageFadeMillis).alpha(1f);
-                }
-            });
-
         }
 
         bindViews();
@@ -214,7 +206,6 @@ public class ArticleDetailFragment extends Fragment implements
         TextView bodyView = (TextView) mRootView.findViewById(R.id.article_body);
 
         if (mCursor != null) {
-            Log.d("TRANS_DETAIL_FRAGMENT", "Article id: " + mCursor.getString(ArticleLoader.Query._ID) + " transitionName: " + getString(R.string.transition_photo) + mItemPosition);
             mRootView.setAlpha(0);
             mRootView.setVisibility(View.VISIBLE);
             mRootView.animate().alpha(1);
@@ -263,17 +254,6 @@ public class ArticleDetailFragment extends Fragment implements
     @Override
     public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
 
-        mPhotoView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-            @Override
-            public boolean onPreDraw() {
-                mPhotoView.getViewTreeObserver().removeOnPreDrawListener(this);
-                // Start the postponed transition
-                ActivityCompat.startPostponedEnterTransition(getActivity());
-                Log.d("TRANS_DETAIL_ACTIVITY", "Resuming transition");
-                return true;
-            }
-        });
-
         if (!isAdded()) {
             if (cursor != null) {
                 cursor.close();
@@ -291,6 +271,16 @@ public class ArticleDetailFragment extends Fragment implements
         }
 
         bindViews();
+
+        mPhotoView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                mPhotoView.getViewTreeObserver().removeOnPreDrawListener(this);
+                // Start the postponed transition
+                ActivityCompat.startPostponedEnterTransition(getActivity());
+                return true;
+            }
+        });
     }
 
     @Override

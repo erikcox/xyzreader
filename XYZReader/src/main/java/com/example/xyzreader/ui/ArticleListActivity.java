@@ -11,7 +11,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.Loader;
 import android.database.Cursor;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.Snackbar;
@@ -22,8 +21,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.text.format.DateUtils;
-import android.transition.ChangeBounds;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -53,14 +50,6 @@ public class ArticleListActivity extends AppCompatActivity implements
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            // This should be inherited from the theme XML, setting it explicitly in case it's not
-            getWindow().requestFeature(android.view.Window.FEATURE_CONTENT_TRANSITIONS);
-            getWindow().requestFeature(android.view.Window.FEATURE_ACTIVITY_TRANSITIONS);
-            getWindow().setSharedElementExitTransition(new ChangeBounds());
-        }
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article_list);
 
@@ -177,9 +166,6 @@ public class ArticleListActivity extends AppCompatActivity implements
                         thumbnail.setTransitionName(mTransitionName);
                         ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(ArticleListActivity.this,
                                 thumbnail, mTransitionName);
-
-                        // Log some values
-                        Log.d("TRANS_LIST_ACTIVITY", "  Article id: " + mArticleId + " transitionName: " + mTransitionName + " vh: " + String.valueOf(vh.getAdapterPosition()));
 
                         startActivity(intent, options.toBundle());
                     }  else {
